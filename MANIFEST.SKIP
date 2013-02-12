@@ -25,3 +25,4 @@
 ^\.git/
 \.sw[po]$
 ^README\.pod$^MYMETA.yml$
+^MYMETA.yml$

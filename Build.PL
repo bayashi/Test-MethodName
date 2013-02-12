@@ -8,11 +8,15 @@ my $builder = Module::Build->new(
     dist_author         => 'Dai Okabayashi <bayashi@cpan.org>',
     dist_version_from   => 'lib/Test/MethodName.pm',
     build_requires      => {
-        'Test::More' => 0.88,
+        'FindBin' => 0,
+        'File::Spec' => 0,
     },
     requires => {
         'perl' => '5.8.1',
-        'Carp' => 0,
+        'Test::More' => 0.88,
+        'Module::Pluggable::Object' => 0,
+        'List::MoreUtils' => 0,
+        'Sub::Identify' => 0,
     },
     add_to_cleanup      => [ 'Test-MethodName-*' ],
     meta_merge     => {

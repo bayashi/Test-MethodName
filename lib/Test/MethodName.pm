@@ -134,7 +134,11 @@ Dai Okabayashi E<lt>bayashi@cpan.orgE<gt>
 
 =head1 SEE ALSO
 
-L<Other::Module>
+This module's codes were almost stolen from below modules.
+
+L<Module::Functions> and L<Test::LoadAllModules>
+
+thank you.
 
 
 =head1 LICENSE

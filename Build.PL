@@ -16,7 +16,7 @@ my $builder = Module::Build->new(
         'Test::More' => 0.88,
         'Module::Pluggable::Object' => 0,
         'List::MoreUtils' => 0,
-        'Sub::Identify' => 0,
+        'Module::Functions' => '2.1.0',
     },
     add_to_cleanup      => [ 'Test-MethodName-*' ],
     meta_merge     => {

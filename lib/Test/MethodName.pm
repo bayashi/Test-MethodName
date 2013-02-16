@@ -4,28 +4,13 @@ use warnings;
 use Test::More qw//;
 use Module::Pluggable::Object;
 use List::MoreUtils qw/any/;
-use Sub::Identify qw//;
+use Module::Functions qw//;
 
 our $VERSION = '0.01';
 
 use Exporter;
 our @ISA    = qw/Exporter/;
 our @EXPORT = qw/method_ok all_methods_ok/;
-
-sub _functions {
-    # this code was borrowed from Module::Functions
-    my $klass = shift;
-    my @functions;
-    no strict 'refs'; ## no critic
-    while (my ($k, $v) = each %{"${klass}::"}) {
-#        next if $k =~ /^(?:BEGIN|UNITCHECK|INIT|CHECK|END|import)$/;
-#        next if $k =~ /^_/;
-        next unless *{"${klass}::${k}"}{CODE};
-        next if $klass ne Sub::Identify::stash_name( $klass->can($k) );
-        push @functions, $k;
-    }
-    return \@functions;
-}
 
 sub method_ok {
     my ($module, $test_code) = @_;
@@ -38,9 +23,7 @@ sub method_ok {
 
     Test::More::note("test methods in $module");
 
-    my $functions = _functions($module);
-
-    for my $function (@{$functions}) {
+    for my $function ( Module::Functions::get_full_functions($module) ) {
         Test::More::ok( $test_code->($function), "function: $function" );
     }
 }
@@ -111,7 +94,7 @@ Test::MethodName - test method name
 
 =head1 DESCRIPTION
 
-Test::MethodName is
+Test::MethodName can define prohibited rules for method name.
 
 
 =head1 METHODS
@@ -130,15 +113,6 @@ Test::MethodName is hosted on github
 =head1 AUTHOR
 
 Dai Okabayashi E<lt>bayashi@cpan.orgE<gt>
-
-
-=head1 SEE ALSO
-
-This module's codes were almost stolen from below modules.
-
-L<Module::Functions> and L<Test::LoadAllModules>
-
-thank you.
 
 
 =head1 LICENSE

@@ -11,3 +11,4 @@ MANIFEST.bak
 *.sw[po]
 MYMETA.*
 META.json
+META.yml
